@@ -36,3 +36,7 @@
 		'@utils': path.resolve(__dirname, './src/utils'),
 	},
 ```
+
+### Репозиторий
+
+https://github.com/AnnaO12/stellar-burgers
