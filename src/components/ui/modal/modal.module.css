@@ -39,11 +39,11 @@
   align-items: center;
 }
 
-.content > h2 {
+.content > h2[class~='text_type_main-large'] {
   align-self: flex-start;
 }
 
-.content > p {
+.content > p[class~='text_type_digits-default'] {
   align-self: flex-start;
 }
 
