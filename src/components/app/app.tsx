@@ -191,7 +191,7 @@ const RouteComponent = (): React.JSX.Element => {
           <Route
             path="/ingredients/:id"
             element={
-              <Modal title="Детали ингредиента" onClose={handleCloseModal}>
+              <Modal title="" onClose={handleCloseModal}>
                 <IngredientDetails />
               </Modal>
             }
@@ -199,7 +199,7 @@ const RouteComponent = (): React.JSX.Element => {
           <Route
             path="/feed/:number"
             element={
-              <Modal title="Информация о заказе" onClose={handleCloseModal}>
+              <Modal title="" onClose={handleCloseModal}>
                 <OrderInfo />
               </Modal>
             }
@@ -208,7 +208,7 @@ const RouteComponent = (): React.JSX.Element => {
             path="/profile/orders/:number"
             element={
               <ProtectedRoute>
-                <Modal title="Информация о заказе" onClose={handleCloseModal}>
+                <Modal title="" onClose={handleCloseModal}>
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

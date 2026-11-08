@@ -13,5 +13,10 @@ export const IngredientDetails = (): React.JSX.Element => {
     return <Preloader />;
   }
 
-  return <IngredientDetailsUI ingredientData={ingredientData} />;
+  return (
+    <>
+      <h2 className="text text_type_main-large">Детали ингредиента</h2>
+      <IngredientDetailsUI ingredientData={ingredientData} />
+    </>
+  );
 };
