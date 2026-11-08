@@ -56,6 +56,7 @@ export const ProfileUI = ({
             errorText={''}
             size={'default'}
             icon={'EditIcon'}
+            autoComplete="new-password"
           />
         </div>
         {isFormChanged && (

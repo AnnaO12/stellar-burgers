@@ -28,6 +28,14 @@
   margin: 120px auto;
 }
 
+.detailPageWrap > h2 {
+  text-align: center;
+}
+
+.detailPageWrap > p {
+  text-align: center;
+}
+
 .detailHeader {
   text-align: center;
 }
