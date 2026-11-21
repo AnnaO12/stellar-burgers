@@ -1,10 +1,14 @@
+import { fetchHistory } from '@/services/historySlice';
+import { useSelector, useDispatch } from '@/services/store';
 import { ProfileOrdersUI } from '@ui-pages';
-
-import type { TOrder } from '@utils-types';
+import { useEffect } from 'react';
 
 export const ProfileOrders = (): React.JSX.Element => {
-  /** TODO: взять переменную из стора */
-  const orders: TOrder[] = [];
+  const orders = useSelector((state) => state.history.orders);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    void dispatch(fetchHistory());
+  }, [dispatch]);
 
   return <ProfileOrdersUI orders={orders} />;
 };
