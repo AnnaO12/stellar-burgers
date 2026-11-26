@@ -12,7 +12,12 @@ describe('Тестирование ingredientsReducer', function () {
     });
   });
   test('Устанавливает состояние загрузки getIngredients.pending', function () {
-    const result = ingredientsReducer(undefined, { type: getIngredients.pending.type });
+    const errorState = {
+      ingredients: [],
+      isLoading: false,
+      error: { message: 'Ошибка' },
+    };
+    const result = ingredientsReducer(errorState, { type: getIngredients.pending.type });
     expect(result).toEqual({
       ingredients: [],
       isLoading: true,
@@ -20,6 +25,7 @@ describe('Тестирование ingredientsReducer', function () {
     });
   });
   test('Сохраняет ингредиенты при getIngredients.fulfilled', function () {
+    const loadingState = { ingredients: [], isLoading: true, error: null };
     const mockIngredient: TIngredient = {
       _id: '123',
       name: 'test product',
@@ -33,7 +39,7 @@ describe('Тестирование ingredientsReducer', function () {
       image_large: 'image_large',
       image_mobile: 'image_mobile',
     };
-    const result = ingredientsReducer(undefined, {
+    const result = ingredientsReducer(loadingState, {
       type: getIngredients.fulfilled.type,
       payload: [mockIngredient],
     });

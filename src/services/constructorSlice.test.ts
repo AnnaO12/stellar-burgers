@@ -41,63 +41,37 @@ describe('Тестирование constructorReducer', function () {
       ingredients: [],
     });
   });
-  test('Проверка добавления булки', function () {
-    const result = constructorReducer(undefined, setBun(mockBun));
-    expect(result).toEqual({ bun: mockBun, ingredients: [] });
+  test('Проверка замены булки', function () {
+    const secondBun = { ...mockBun, _id: '121', id: 'bun-2' };
+    const filledState = { bun: mockBun, ingredients: [] };
+    const result = constructorReducer(filledState, setBun(secondBun));
+    expect(result).toEqual({ bun: secondBun, ingredients: [] });
   });
   test('Проверка добавления начинки', function () {
-    const mockIngredient: TConstructorIngredient = {
-      _id: '123',
-      id: 'ingredient-1',
-      name: 'test product',
-      type: 'main',
-      proteins: 123,
-      fat: 123,
-      carbohydrates: 123,
-      calories: 123,
-      price: 123,
-      image: 'image',
-      image_large: 'image_large',
-      image_mobile: 'image_mobile',
-    };
-    const result = constructorReducer(undefined, addIngredient(mockIngredient));
-    expect(result).toEqual({ bun: null, ingredients: [mockIngredient] });
+    const filledState = { bun: null, ingredients: [firstIngredient] };
+    const result = constructorReducer(filledState, addIngredient(secondIngredient));
+    expect(result).toEqual({
+      bun: null,
+      ingredients: [firstIngredient, secondIngredient],
+    });
   });
   test('Проверка удаления начинки', function () {
-    const mockIngredient: TConstructorIngredient = {
-      _id: '123',
-      id: 'ingredient-1',
-      name: 'test - product',
-      type: 'main',
-      proteins: 123,
-      fat: 123,
-      carbohydrates: 123,
-      calories: 123,
-      price: 123,
-      image: 'image',
-      image_large: 'image_large',
-      image_mobile: 'image_mobile',
-    };
-    const secondIngredient: TConstructorIngredient = {
-      ...mockIngredient,
-      _id: '124',
-      id: 'ingredient-2',
-      name: 'test-product-2',
-      type: 'sauce',
-    };
-    const filledState = { bun: null, ingredients: [mockIngredient, secondIngredient] };
-    const result = constructorReducer(filledState, removeIngredient(mockIngredient.id));
-    expect(result).toEqual({ bun: null, ingredients: [secondIngredient] });
+    const filledState = { bun: null, ingredients: [firstIngredient, secondIngredient] };
+    const result = constructorReducer(
+      filledState,
+      removeIngredient(secondIngredient.id)
+    );
+    expect(result).toEqual({ bun: null, ingredients: [firstIngredient] });
   });
   test('Проверка очистки конструктора', function () {
     const filledState = {
       bun: mockBun,
-      ingredients: [{ ...mockBun, id: 'ingredients', type: 'main' }],
+      ingredients: [firstIngredient],
     };
     const result = constructorReducer(filledState, clearConstructor());
     expect(result).toEqual({ bun: null, ingredients: [] });
   });
-  test('Проверка перемещение начинки вверх', function () {
+  test('Проверка перемещения начинки вверх', function () {
     const filledState = { bun: null, ingredients: [firstIngredient, secondIngredient] };
     const result = constructorReducer(
       filledState,
